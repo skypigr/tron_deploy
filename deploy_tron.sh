@@ -80,16 +80,16 @@ echo 'download code from git repositorie'
 if [ ! -e $BIN_PATH ]; then
   mkdir -p $BIN_PATH
   cd $BIN_PATH
-  git clone https://github.com/tronprotocol/$PROJECT
+  git clone https://github.com/tronprotocol/$PROJECT --depth=1
 fi
 
 cd $BIN_PATH
 if [ $NET == "mainnet" ]; then
-  wget https://github.com/skypigr/tron_deploy/blob/master/main_net_config.conf -O main_net_config.conf
+  wget https://raw.githubusercontent.com/skypigr/tron_deploy/master/main_net_config.conf -O main_net_config.conf
   RELEASE=`curl --silent "https://api.github.com/repos/tronprotocol/java-tron/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
   CONF_PATH=$BIN_PATH/main_net_config.conf
 elif [ $NET == "testnet" ]; then
-  wget https://github.com/skypigr/tron_deploy/blob/master/test_net_config.conf -O test_net_config.conf
+  wget hhttps://raw.githubusercontent.com/skypigr/tron_deploy/master/test_net_config.conf -O test_net_config.conf
   BRANCH="master"
   CONF_PATH=$BIN_PATH/test_net_config.conf
 fi
