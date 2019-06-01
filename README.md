@@ -5,7 +5,7 @@ Just Support FullNode and SolidityNode.
 ## Download and run script
 
 ```shell
-TODO
+wget https://raw.githubusercontent.com/skypigr/tron_deploy/master/deploy_tron.sh -O deploy_tron.sh
 ```
 
 ## Parameter Illustration
@@ -29,6 +29,23 @@ bash deploy_tron.sh --app [FullNode|SolidityNode] --net [mainnet|testnet|private
 ### Deployment of FullNode on the one host.
 
 ```shell
-TODO
+wget https://raw.githubusercontent.com/skypigr/tron_deploy/master/deploy_tron.sh -O deploy_tron.sh
 bash deploy_tron.sh
+```
+
+### Deployment of SolidityNode on the one host.
+
+```shell
+wget https://raw.githubusercontent.com/skypigr/tron_deploy/master/deploy_tron.sh -O deploy_tron.sh
+# User can self-configure the IP and Port of GRPC service in the turst-node field of SolidityNode. trust-node is the fullnode you just deploy.
+bash deploy_tron.sh --app SolidityNode --trust-node <grpc-ip:grpc-port>
+```
+
+### Deployment of FullNode and SolidityNode on the same host.
+
+```shell
+# You need to configure different gRPC ports on the same host because gRPC port is available on SolidityNode and FullNodeConfigure and it cannot be set as default value 50051. In this case the default value of rpc port is set as 50041.
+wget https://raw.githubusercontent.com/skypigr/tron_deploy/master/deploy_tron.sh -O deploy_tron.sh
+bash deploy_tron.sh --app FullNode
+bash deploy_tron.sh --app SolidityNode --rpc-port 50041
 ```
